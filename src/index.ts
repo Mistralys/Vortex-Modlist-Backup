@@ -1,6 +1,7 @@
 import {IMod} from "vortex-api/lib/extensions/mod_management/types/IMod";
 import {IState} from "vortex-api/lib/types/IState";
 import {IExtensionContext} from "vortex-api/lib/types/IExtensionContext";
+import renderModName from 'vortex-api/lib/extensions/mod_management/util/modName';
 import getSafe from "./getSafe";
 
 const path = require('path');
@@ -30,6 +31,7 @@ const getActiveGameId = (state: IState): string => {
 // Transform the format of the mod from what's used internally in Vortex into what we want to store in the file
 const transformModFormat = (mod: IMod): Mod => ({
     name: mod.attributes.modName,
+    displayName: renderModName(mod),
     game: mod.attributes.downloadGame,
     modId: mod.attributes.modId,
     fileId: mod.attributes.fileId,
